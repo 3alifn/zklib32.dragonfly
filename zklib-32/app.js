@@ -26,7 +26,6 @@ const zkteco = async (param) => {
     const name = 'Fingerprint';
     const lastSyncData = fs.readFileSync('./data.js', 'utf8');
     const abs_count = Math.abs(getLast - lastSyncData)
-
     // console.log( 'TOTAL ATTN LOGS IN MACHINE CAPACITY '+getLast);
     // console.log( 'ATTN LOGS LAST SYNC DATA '+lastSyncData);
     // console.log( 'DIFF ATTN LOGS BETWEEN DATABASE AND MACHINE CAPACITY '+abs_count);
@@ -87,7 +86,7 @@ function attn_log_checkout(domain, user) {
     const abs_count = Math.abs(getLast - lastSyncData)
     console.log('TOTAL ATTN LOGS IN DATABASE ' + parseInt(getLast));
     console.log('TOTAL ATTN LOGS IN MACHINE CAPACITY ' + parseInt(lastSyncData));
-    console.log('DIFF ATTN LOGS BETWEEN DATABASE AND MACHINE CAPACITY ' + parseInt(abs_count));
+    console.log('DIFF ATTN LOGS DIFF BETWEEN DATABASE AND MACHINE CAPACITY ' + parseInt(abs_count));
     console.log('=================================================================');
 
     fs.writeFileSync('./data.js', JSON.stringify(getLast));
