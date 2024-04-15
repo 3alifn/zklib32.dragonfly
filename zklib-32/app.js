@@ -1,4 +1,5 @@
 const { json } = require("body-parser");
+const dotenv = require('dotenv').config();
 const ZKLib = require('zklib-32ble');
 const Timer = require('setinterval');
 const axios = require('axios');
@@ -11,6 +12,9 @@ http.createServer((req, res) => {
   res.end('ZKLIB-32 STARTED, NOW READY FOR ATTENDANCE')
 }).listen(303)
 
+const domain = 'saanviabc.com';
+const domainKey= process.env.domainKey;
+const deviceSn= process.env.deviceSn;
 const zkteco = async (param) => {
   let zkInstance = new ZKLib('192.168.1.201', 4370, 5200, 5000);
   try {
@@ -20,7 +24,6 @@ const zkteco = async (param) => {
     const logs = await zkInstance.getAttendances()
     // console.log(await zkInstance.getInfo());
     const getLast = logs.data.length;
-    const domain = 'saanviabc.com';
     const data = logs.data;
     const user = 'Student';
     const name = 'Fingerprint';
@@ -37,7 +40,7 @@ const zkteco = async (param) => {
         const record_date = data[index].recordTime.slice(0, 15);
         const record_time = data[index].recordTime.slice(0, 24);
         console.log(user_id, record_time);
-        abs_log_checkout(domain, user, name, user_id, today, record_date, record_time);
+        abs_log_checkout(domainKey, deviceSn, domain, user, name, user_id, today, record_date, record_time);
       }
     }
 
@@ -62,11 +65,11 @@ const checkinTime = "0800";
 const checkoutTime = "1000";
 const realTime = new Date().toTimeString().slice(0, 5).replace(":", "")
 
-// attn_checkout_webapi_absent_student('saanviabc.com', 'Student', 'Fingerprint')
+// attn_checkout_webapi_absent_student(domain, 'Student', 'Fingerprint')
 
 
 setTimeout(() => {
-  attn_log_checkout('saanviabc.com', 'Student')
+  attn_log_checkout(domain, 'Student')
 }, 5000); // emit on after 5sec.........
 
 
