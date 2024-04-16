@@ -1,4 +1,13 @@
 {
+  "name": "zklib32.dragonfly",
+  "description": "zklib32.dragonfly used for realtime biometric attn system web api",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "pkg-win": "electron-packager . dragonfly --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/dragonfly.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"dragonfly\""
+  },
   "dependencies": {
     "axios": "^1.6.8",
     "body-parser": "^1.20.2",
@@ -6,5 +15,20 @@
     "express": "^4.19.2",
     "setinterval": "^0.2.4",
     "zklib-32ble": "^2.0.5"
+  },
+
+  "devDependencies": {
+    "electron": "^29.3.0",
+    "electron-packager": "^17.1.2"
+  },
+  "keywords": [
+    "dragonfly"
+  ],
+  "author": "3alifn",
+  "license": "ISC",
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3alifn/zklib32.dragonfly.git"
   }
 }

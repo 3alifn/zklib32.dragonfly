@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <center>
+    <h1>Hello ANT</h1>
+  </center>
+
+  
+
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+  // window.location.replace('http://localhost:30')
+    var socket= io()
+ const elem= document.getElementById('msg');
+ const inputElem= document.getElementById('input');
+ const sent= document.getElementById('sent');
+
+inputElem.addEventListener('keyup', ()=>{
+ const input= document.getElementById('input').value;
+
+  socket.emit('cmsg', input);
+
+})
+  
+  socket.on('smsg', (msg)=>{
+        passmsg(msg)
+  }) 
+  
+  socket.on('data', (msg)=>{
+        passmsg(msg)
+  })
+
+  function passmsg(msg){
+    elem.innerText= msg
+  }
+
+</script>
+
+</html>
